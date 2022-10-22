@@ -139,6 +139,10 @@
          justify-content: center;
          column-gap: 3vh;
       }
+
+      .hide {
+         display: none;
+      }
    </style>
    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
@@ -157,11 +161,11 @@
          </article>
       </section>
       <div class="result">
-         <div class="res-box hide">
-            <h3></h3>
-         </div>
          <div class="res-box">
             <h2></h2>
+         </div>
+         <div class="res-box hide">
+            <h3></h3>
          </div>
       </div>
    </div>
@@ -197,6 +201,7 @@
         //length of all numbers is 81
       for( let i = 0; i < $('tr').children().text().length; i++){
          if( $('.blank').length != 0){
+            $('.hide').css('display', 'block');
             if($('.blank').length == 1){
                h3.text(`You have 1 empty box`);
             }else{
@@ -238,7 +243,7 @@
             validateRows(output);
             tablePop(values);
             $($('button')[1]).click(function(){
-               $('.hide').css('display', 'block');
+               $('.hide').css('display', 'none');
                $('table').text('');
                h2.text('');
                h3.text('');
