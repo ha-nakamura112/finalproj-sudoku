@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      @import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+
+      * {
+         padding: 0;
+         margin: 0;
+         font-family: 'Silkscreen', cursive;
+      }
+      
+      section {
+         display: flex;
+         flex-direction: column;
+         flex-wrap: wrap;
+         justify-content: center;
+         align-items: center;
+         row-gap: 4vh;
+      }
+      
+      article {
+         width: 100%;
+         display: flex;
+         justify-content: center;
+         column-gap: 2vh;
+      }
+
+      /* Style for Title */
+      h1 {
+         width: 100%;
+         font-size: 30pt;
+         font-weight: 400;
+         text-align: center;
+      }
+
+      /* Style for buttons */
+      aside {
+         width: 100%;
+         display: flex;
+         justify-content: center;
+         column-gap: 3vh;
+      }
+
+      button {
+         padding: 0.5vh;
+         border: 5px outset #aaf;
+         background-color: #aaf;
+         font-size: 12pt;
+         color: whitesmoke;
+      }
+
+      button:active {
+         border: 5px inset #aaf;
+      }
+
+      :disabled {
+         border: 5px solid #ddf;
+         background-color: #ddf;
+      }
+
+      /* Default style for the table */
+      table {
+         width: 430px;
+         height: 430px;
+         border-collapse: collapse;
+      }
+      
+      tr,td {
+         border: 2px solid #ddf;
+         color: #88e;
+         font-size: 22pt;
+         text-align: center;
+      }
+
+      .selected {
+         border: 3px solid #aaf;
+         background-color: #eef;
+      }
+
+      /* Class for the cell that has an error */
+      .error1 {
+         border: 5px dashed #f88;
+         background-color: #fdd;
+         color: #f66;
+      }
+      .error2 {
+         border: 5px dashed #f88;
+         background-color: #88e;
+         color: #f66;
+      }
+
+      /* result */
+      .result {
+         display: flex;
+         flex-direction: column;
+         align-items: flex-start;
+         justify-content: center;
+         row-gap: 2vh;
+      }
+
+      .res-box{
+         border: 2px dotted #88e;
+         height: 25vh;
+         width: 25vh;
+         display: flex;
+         flex-direction: column;
+         
+         align-items: center;
+         justify-content: center;
+         row-gap: 2vh;
+      }
+
+      .result h2{
+         text-align: center;
+         text-transform: capitalize;
+         word-spacing: 1.3;
+         color: #88e;
+         font-weight: 600;
+         font-size: 24px;
+      }
+      .result h3{
+         text-align: center;
+         text-transform: capitalize;
+         word-spacing: 1.3;
+         color: #f66;
+         font-weight: 500;
+         font-size: 20px;
+      }
+
+      .container {
+         padding: 0 25%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         column-gap: 3vh;
+      }
+   </style>
+   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+</head>
+<body>
+   <div class="container">
+      <section>
+         <h1>AUTOMATIC SUDOKU</h1>
+         <aside>
+            <button type="button">CHECK</button>
+            <button type="button" disabled>TRY AGAIN</button>
+         </aside>
+         <article>
+            <table>
+   
+            </table>
+         </article>
+      </section>
+      <div class="result">
+         <div class="res-box">
+            <h3></h3>
+         </div>
+         <div class="res-box">
+            <h2></h2>
+         </div>
+      </div>
+   </div>
+   <script>
+   let size, values;
+   let button = document.querySelector('button');
+   let resultRows = [];
+   let columnArry = [];
+   let resultBoxs = [];
+   let h2 = $('h2');
+   let h3 = $('h3');
+
+      let height = $(window).innerHeight();
+      $("section").css("height", height);
+
+      let tablePop = (values) => {
+        const table = document.querySelector("table");
+        for(let rowidx in values){
+            let tr = document.createElement("tr");
+            for(let colIdx in values[rowidx]){
+                let td = document.createElement("td");
+                td.innerHTML = values[rowidx][colIdx];
+                (td.innerHTML == '') ? td.classList.add('blank'):null;
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+        }
+      }
+    
+    
+    button.addEventListener('click',function(){
+        let tr = document.querySelectorAll('tr');
+        //length of all numbers is 81
+      for( let i = 0; i < $('tr').children().text().length; i++){
+         if( $('.blank').length != 0){
+            if($('.blank').length == 1){
+               h3.text(`You have  a 1 empty box`);
+            }else{
+               h3.text(`You have ${$('.blank').length} empty boxes`);
+            }
+         }
+      }
+      let test = test1();
+        let len = ( test.length + resultRows.length ) / 2;
+        if( len == 0){
+         h2.text('Congratulations! There is no error!');
+        }else{
+         h2.text(`You have ${len} mistakes! Let's try again!`);
+        }
+
+        for( let y =0; y< resultRows.length; y++){
+            let res = resultRows[y];
+            tr[res[0]].children[res[1]].classList.add('error1');
+            $($("button")[1]).attr("disabled",false);
+        }
+        for( let y =0; y< test.length; y++){
+            let res = test[y];
+            tr[res[0]].children[res[1]].classList.add('error2');
+            $($("button")[1]).attr("disabled",false);
+        }   
+    })
+
+    
+
+
+    function loadJson(){
+        const xmlHTTP = new XMLHttpRequest();
+        xmlHTTP.onload = function(){
+            output = JSON.parse(this.responseText)[0];
+            size = output.size;
+            values = output.values;
+            validateRows(output);
+            tablePop(values);
+            $($('button')[1]).click(function(){
+               $('table').text('');
+               h2.text('');
+               h3.text('');
+               resultRows = [];
+               columnArry = [];
+               // resultBoxs = [];
+               validateRows(output);
+               tablePop(values);
+               $(this).attr('disabled',true);
+            })
+
+        }
+        xmlHTTP.open("GET","./source.json",true);
+        xmlHTTP.send();
+    }
+    loadJson();
+    
+
+
+    function validateRows(board){
+    let size = board.size;
+    let val = board.values;
+	// Rows
+	for (let q = 0; q < size; q++){
+		for (let i = 0; i < size; i++){
+            for (let j = i+1; j < size; j++){
+                if(val[q][i] == val[q][j]){
+                    resultRows.push([q,i]);
+                    resultRows.push([q,j]);
+                }
+            }
+        }
+	}
+    return resultRows;
+    }
+
+   // Angel's part 
+        let test1 = function(){
+            for(let i=0;i<size;i++){
+                // for iterate through every column 
+                for(let j=0;j<size;j++){
+                    for(let k=j+1;k<size;k++){
+                        // to compare if theres any duplicate in the columns 
+                        if(values[j][i] == values[k][i]){
+                            columnArry.push([j,i]);
+                            columnArry.push([k,i]);
+                            
+                        }
+                    }
+                }
+            }
+            
+            return columnArry;
+        }
+        
+        setTimeout( function() { 
+                test1();
+                // because the function was retutning the same result twice, the array is divided in half   
+                let cArryLength = columnArry / 2;
+                columnArry.splice(cArryLength);
+
+            }, 100);
+
+        
+    // end of angel's part 
+   </script>
+</body>
+</html>
