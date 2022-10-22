@@ -5,6 +5,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
    <style>
       @import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
 
@@ -16,18 +17,17 @@
       
       section {
          display: flex;
-         flex-direction: column;
-         flex-wrap: wrap;
          justify-content: center;
-         align-items: center;
-         row-gap: 4vh;
+         align-items: flex-start;
+         column-gap: 3vh;
+         height: fit-content;
+         padding-top: 5vh;
       }
       
       article {
          width: 100%;
          display: flex;
          justify-content: center;
-         column-gap: 2vh;
       }
 
       /* Style for Title */
@@ -52,6 +52,7 @@
          background-color: #aaf;
          font-size: 12pt;
          color: whitesmoke;
+         box-shadow: 0 3px 5px rgba(0,0,0,.2);
       }
 
       button:active {
@@ -77,6 +78,23 @@
          text-align: center;
       }
 
+      i {
+         font-size: 28px;
+         animation: move 3s ease infinite;
+         ani
+      }
+      @keyframes move {
+      0%{
+         transform: translateX(-200%);
+         }
+      50% {
+         transform: translateX(200%);
+      }
+      100% {
+         transform: translateX(-200%);
+      }
+
+      }
       .selected {
          border: 3px solid #aaf;
          background-color: #eef;
@@ -99,7 +117,7 @@
          display: flex;
          flex-direction: column;
          align-items: flex-start;
-         justify-content: center;
+         justify-content: flex-start;
          row-gap: 2vh;
       }
 
@@ -133,11 +151,12 @@
       }
 
       .container {
-         padding: 0 25%;
          display: flex;
+         flex-direction: column;
          align-items: center;
          justify-content: center;
-         column-gap: 3vh;
+         row-gap: 2vh;
+         padding: 7%;
       }
 
       .hide {
@@ -151,31 +170,58 @@
          justify-content: center;
          row-gap: 2vh;
       }
+
+
+      @keyframes poyooon {
+  0%   { transform: scale(1.0, 1.0) translate(0%, 0%); }
+  10%  { transform: scale(1.1, 0.9) translate(0%, 5%); }
+  40%  { transform: scale(1.2, 0.8) translate(0%, 15%); }
+  50%  { transform: scale(1.0, 1.0) translate(0%, 0%); }
+  60%  { transform: scale(0.9, 1.2) translate(0%, -100%); }
+  75%  { transform: scale(0.9, 1.2) translate(0%, -20%); }
+  85%  { transform: scale(1.2, 0.8) translate(0%, 15%); }
+  100% { transform: scale(1.0, 1.0) translate(0%, 0%); }
+}
+
+@keyframes korokoro {
+  0%   { transform: translate(0%, 0%); }
+  5%   { transform: translate(10%, 0%) rotate(10deg); }
+  25%  { transform: translate(20%, 0%) rotate(20deg); }
+  30%  { transform: translate(-10%, 0%) rotate(-10deg); }
+  35%  { transform: translate(-15%, 0%) rotate(-15deg); }
+  45%  { transform: translate(10%, 0%) rotate(10deg); }
+  50%  { transform: translate(15%, 0%) rotate(15deg); }
+  60%  { transform: translate(-5%, 0%) rotate(-5deg); }
+  65%  { transform: translate(-7%, 0%) rotate(-7deg); }
+  75%  { transform: translate(0%, 0%) rotate(0deg); }
+  100% { transform: translate(0%, 0%) rotate(0deg); }
+}
    </style>
    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 <body>
    <div class="container">
+      <h1>AUTOMATIC SUDOKU</h1>
+      <i class="fa-brands fa-android"></i>
+      <aside>
+         <button type="button">CHECK</button>
+         <button type="button" disabled>TRY AGAIN</button>
+      </aside>
       <section>
-         <h1>AUTOMATIC SUDOKU</h1>
-         <aside>
-            <button type="button">CHECK</button>
-            <button type="button" disabled>TRY AGAIN</button>
-         </aside>
          <article>
             <table>
    
             </table>
          </article>
+         <div class="result">
+            <div class="res-box">
+               <h2></h2>
+            </div>
+            <div class="res-box hide">
+               <h3></h3>
+            </div>
+         </div>
       </section>
-      <div class="result">
-         <div class="res-box">
-            <h2></h2>
-         </div>
-         <div class="res-box hide">
-            <h3></h3>
-         </div>
-      </div>
    </div>
    <script>
    let size, values;
@@ -186,7 +232,7 @@
    let h2 = $('h2');
    let h3 = $('h3');
 
-      let height = $(window).innerHeight();
+      let height = $(window).innerHeight() * 0.8;
       $("section").css("height", height);
 
       let tablePop = (values) => {
@@ -213,7 +259,7 @@
             if($('.blank').length == 1){
                h3.text(`You have 1 empty box`);
             }else{
-               h3.text(`You have ${$('.blank').length} empty boxes`);
+               h3.text(`You have \n ${$('.blank').length} empty boxes`);
             }
          }else{
             $('.hide').css('display', 'none');
@@ -222,9 +268,11 @@
       let test = test1();
         let len = ( test.length + resultRows.length ) / 2;
         if( len == 0){
-         h2.text('Congratulations! There is no error!');
+         h2.text('Congratulations!\n There is no error!');
+         $('i').css('animation','poyooon 0.9s linear 0s infinite');
         }else{
-         h2.text(`${len} mistakes! Let's try again!`);
+         h2.text(`${len} mistakes!\n Let's try again!`);
+         $('i').css('animation','korokoro 2.5s linear 0s 3');
         }
 
         for( let y =0; y< resultRows.length; y++){
@@ -249,6 +297,8 @@
             size = output.size;
             values = output.values;
             validateRows(output);
+            validateBoxs(output);
+
             tablePop(values);
             $($('button')[1]).click(function(){
                $('.hide').css('display', 'none');
@@ -268,6 +318,42 @@
         xmlHTTP.send();
     }
     loadJson();
+
+    let temp = [];
+    function validateBoxs(){
+      let sq = Math.sqrt(size);
+      for(let p = 0; p < size; p += sq){
+        for (let y = 0; y < size ; y += sq){
+         //getting the first place of each sectioin 1,4,6,7,2,5,8,9,2 
+         console.log(values[p][y]);
+            for(let i = p ; i < sq; i++){
+               for(let j = y; j < sq; j++){
+                  //based on each number add 0-2 to check every numbers in one section
+                  temp.push(values[i][j]);
+               }
+            }
+         }
+      }
+      //however this temp shows only one section..
+      console.log(temp);
+
+
+      // let len = temp.size;
+      // let val = temp.values;
+      //    for (let q = 0; q < size; q++){
+      //    for (let i = 0; i < size; i++){
+      //          for (let j = i+1; j < size; j++){
+      //              if(temp[q][i] == temp[q][j]){
+      //                  resultRows.push([q,i]);
+      //                  resultRows.push([q,j]);
+      //              }
+      //          }
+      //       }
+      //    }
+	   }
+
+      
+      
     
 
 
