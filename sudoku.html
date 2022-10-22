@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <style>
+        td{
+            border: solid 1px;
+            border-collapse: collapse;
+            padding: 4px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+
+    </table>
+</body>
+<script>
+    let size, values;
+    let tablePop = (values) => {
+        const table = document.querySelector("table");
+        for(let rowidx in values){
+            let tr = document.createElement("tr");
+            for(let colIdx in values[rowidx]){
+                let td = document.createElement("td");
+                td.innerHTML = values[rowidx][colIdx];
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+        }
+    }
+    let loadJson = () =>{
+        const xmlHTTP = new XMLHttpRequest();
+        xmlHTTP.onload = function(){
+            let output = JSON.parse(this.responseText)[0];
+            console.log(output);
+            size = output.size;
+            values = output.values;
+            tablePop(values);
+        }
+        xmlHTTP.open("GET","./source.json",true);
+        xmlHTTP.send();
+    }
+    loadJson();
+
+
+
+    // Angel's part 
+        let columnArry = [];
+        let test1 = function(){
+            for(let i=0;i<size;i++){
+                // for iterate through every column 
+                for(let j=0;j<size;j++){
+                    for(let k=j+1;k<size;k++){
+                        // to compare if theres any duplicate in the columns 
+                        if(values[j][i] == values[k][i]){
+                            columnArry.push([j,i]);
+                            columnArry.push([k,i]);
+                            
+                        }
+                    }
+                }
+            }
+            
+            return columnArry;
+        }
+        
+        setTimeout( function() { 
+                test1();
+                // because the function was retutning the same result twice, the array is divided in half   
+                let cArryLength = columnArry / 2;
+                columnArry.splice(cArryLength);
+
+                if(cArryLength == 0){
+                    console.log("all good with columns")
+                }else{
+                    console.log(test1());
+                }
+            }, 100);
+
+        
+    // end of angel's part 
+
+    
+    
+</script>
+</html>
