@@ -88,11 +88,11 @@
          background-color: #fdd;
          color: #f66;
       }
-      .error2 {
+      /* .error2 {
          border: 5px dashed #f88;
          background-color: #88e;
          color: #f66;
-      }
+      } */
 
       /* result */
       .result {
@@ -106,7 +106,7 @@
       .res-box{
          border: 2px dotted #88e;
          height: 25vh;
-         width: 25vh;
+         width: 45vh;
          display: flex;
          flex-direction: column;
 
@@ -142,6 +142,14 @@
 
       .hide {
          display: none;
+         border: 2px dotted #88e;
+         height: 25vh;
+         width: 25vh;
+         flex-direction: column;
+
+         align-items: center;
+         justify-content: center;
+         row-gap: 2vh;
       }
    </style>
    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -201,7 +209,7 @@
         //length of all numbers is 81
       for( let i = 0; i < $('tr').children().text().length; i++){
          if( $('.blank').length != 0){
-            $('.hide').css('display', 'block');
+            $('.hide').css('display', 'flex');
             if($('.blank').length == 1){
                h3.text(`You have 1 empty box`);
             }else{
@@ -226,7 +234,7 @@
         }
         for( let y =0; y< test.length; y++){
             let res = test[y];
-            tr[res[0]].children[res[1]].classList.add('error2');
+            tr[res[0]].children[res[1]].classList.add('error1');
             $($("button")[1]).attr("disabled",false);
         }   
     })
