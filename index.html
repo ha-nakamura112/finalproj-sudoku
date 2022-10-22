@@ -18,16 +18,17 @@
          padding: 2% 25%;
          /* position: relative; */
          display: flex;
+         justify-content: center;
          align-items: center;
          flex-wrap: wrap;
-         row-gap: 3vh;
+         row-gap: 2vh;
       }
       
       article {
          width: 100%;
          display: flex;
          justify-content: center;
-         column-gap: 3vh;
+         column-gap: 2vh;
          /* position: absolute;
          z-index: 0; */
       }
@@ -35,8 +36,33 @@
       /* Style for Title */
       h1 {
          width: 100%;
-         font-size: 26pt;
+         font-size: 30pt;
          text-align: center;
+      }
+
+      /* Style for buttons */
+      aside {
+         width: 100%;
+         display: flex;
+         justify-content: center;
+         column-gap: 2vh;
+      }
+
+      button {
+         padding: 0.5vh;
+         border: 5px outset #aaf;
+         background-color: #aaf;
+         font-size: 12pt;
+         color: whitesmoke;
+      }
+
+      button:active {
+         border: 5px inset #aaf;
+      }
+
+      :disabled {
+         border: 5px solid #ddf;
+         background-color: #ddf;
       }
 
       /* Default style for the table */
@@ -47,26 +73,20 @@
       }
       
       tr,td {
-         border: 1px solid #ddf;
+         border: 2px solid #ddf;
          color: #88e;
-         font-size: 18pt;
+         font-size: 22pt;
          text-align: center;
       }
 
-      /* .check {
-         position: absolute;
-         z-index: 1;
-      } */
-
-      /* Class for the selected cell to validate */
       .selected {
-         border: 2px solid #aaf;
+         border: 3px solid #aaf;
          background-color: #eef;
       }
 
       /* Class for the cell that has an error */
       .error {
-         border: 3px dashed #f88;
+         border: 5px dashed #f88;
          background-color: #fdd;
          color: #f66;
       }
@@ -75,34 +95,15 @@
 <body>
    <section>
       <h1>AUTOMATIC SUDOKU</h1>
-      <!-- <article class="check">
-         <table>
-            <tr>
-               <td class="error"></td>
-               <td></td>
-               <td></td>
-            </tr>
-         </table>
-         <table>
-            <tr>
-               <td></td>
-               <td></td>
-               <td></td>
-            </tr>
-         </table>
-         <table>
-            <tr>
-               <td></td>
-               <td></td>
-               <td></td>
-            </tr>
-         </table>
-      </article> -->
+      <aside>
+         <button type="button">CHECK</button>
+         <button type="button" disabled>RESET</button>
+      </aside>
       <article>
          <table>
             <tr>
-               <td>1</td>
-               <td>8</td>
+               <td class="selected">1</td>
+               <td class="error">8</td>
                <td>7</td>
             </tr>
             <tr>
