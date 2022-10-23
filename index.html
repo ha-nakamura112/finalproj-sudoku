@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      @import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+
+      * {
+         padding: 0;
+         margin: 0;
+         font-family: 'Silkscreen', cursive;
+      }
+      
+      section {
+         padding: 0 25%;
+         display: flex;
+         flex-direction: column;
+         flex-wrap: wrap;
+         justify-content: center;
+         align-items: center;
+         row-gap: 2vh;
+      }
+      
+      article {
+         width: 100%;
+         display: flex;
+         justify-content: center;
+         column-gap: 2vh;
+      }
+
+      /* Style for Title */
+      h1 {
+         width: 100%;
+         font-size: 30pt;
+         font-weight: 400;
+         text-align: center;
+      }
+
+      /* Style for buttons */
+      aside {
+         width: 100%;
+         display: flex;
+         justify-content: center;
+         column-gap: 2vh;
+      }
+
+      button {
+         padding: 0.5vh;
+         border: 5px outset #aaf;
+         background-color: #aaf;
+         font-size: 12pt;
+         color: whitesmoke;
+      }
+
+      button:active {
+         border: 5px inset #aaf;
+      }
+
+      :disabled {
+         border: 5px solid #ddf;
+         background-color: #ddf;
+      }
+
+      /* Default style for the table */
+      table {
+         width: 250px;
+         height: 250px;
+         border-collapse: collapse;
+      }
+      
+      tr,td {
+         border: 2px solid #ddf;
+         color: #88e;
+         font-size: 22pt;
+         text-align: center;
+      }
+
+      .selected {
+         border: 3px solid #aaf;
+         background-color: #eef;
+      }
+
+      /* Class for the cell that has an error */
+      .error {
+         border: 5px dashed #f88;
+         background-color: #fdd;
+         color: #f66;
+      }
+   </style>
+   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+</head>
+<body>
+   <section>
+      <h1>AUTOMATIC SUDOKU</h1>
+      <aside>
+         <button type="button">CHECK</button>
+         <button type="button" disabled>RESET</button>
+      </aside>
+      <article>
+         <table>
+            <tr>
+               <td>1</td>
+               <td>8</td>
+               <td>7</td>
+            </tr>
+            <tr>
+               <td>4</td>
+               <td>9</td>
+               <td>3</td>
+            </tr>
+            <tr>
+               <td>6</td>
+               <td>5</td>
+               <td>2</td>
+            </tr>
+         </table>
+         <table>
+            <tr>
+               <td>6</td>
+               <td>4</td>
+               <td>3</td>
+            </tr>
+            <tr>
+               <td>1</td>
+               <td>2</td>
+               <td>5</td>
+            </tr>
+            <tr>
+               <td>8</td>
+               <td>9</td>
+               <td>7</td>
+            </tr>
+         </table>
+         <table>
+            <tr>
+               <td>2</td>
+               <td>5</td>
+               <td>9</td>
+            </tr>
+            <tr>
+               <td>7</td>
+               <td>8</td>
+               <td>6</td>
+            </tr>
+            <tr>
+               <td>3</td>
+               <td>1</td>
+               <td>4</td>
+            </tr>
+         </table>
+      </article>
+      <article>
+         <table>
+            <tr>
+               <td>7</td>
+               <td>1</td>
+               <td>4</td>
+            </tr>
+            <tr>
+               <td>2</td>
+               <td>3</td>
+               <td>8</td>
+            </tr>
+            <tr>
+               <td>5</td>
+               <td>6</td>
+               <td>9</td>
+            </tr>
+         </table>
+         <table>
+            <tr>
+               <td>9</td>
+               <td>6</td>
+               <td>8</td>
+            </tr>
+            <tr>
+               <td>5</td>
+               <td>7</td>
+               <td>1</td>
+            </tr>
+            <tr>
+               <td>4</td>
+               <td>2</td>
+               <td>3</td>
+            </tr>
+         </table>
+         <table>
+            <tr>
+               <td>5</td>
+               <td>3</td>
+               <td>2</td>
+            </tr>
+            <tr>
+               <td>6</td>
+               <td>4</td>
+               <td>9</td>
+            </tr>
+            <tr>
+               <td>1</td>
+               <td>7</td>
+               <td>8</td>
+            </tr>
+         </table>
+      </article>
+      <article>
+         <table>
+            <tr>
+               <td>8</td>
+               <td>7</td>
+               <td>6</td>
+            </tr>
+            <tr>
+               <td>9</td>
+               <td>1</td>
+               <td>4</td>
+            </tr>
+            <tr>
+               <td>2</td>
+               <td>3</td>
+               <td>5</td>
+            </tr>
+         </table>
+         <table>
+            <tr>
+               <td>4</td>
+               <td>9</td>
+               <td>1</td>
+            </tr>
+            <tr>
+               <td>3</td>
+               <td>5</td>
+               <td>2</td>
+            </tr>
+            <tr>
+               <td>7</td>
+               <td>8</td>
+               <td>6</td>
+            </tr>
+         </table>
+         <table>
+            <tr>
+               <td>3</td>
+               <td>2</td>
+               <td>5</td>
+            </tr>
+            <tr>
+               <td>8</td>
+               <td>6</td>
+               <td>7</td>
+            </tr>
+            <tr>
+               <td>9</td>
+               <td>4</td>
+               <td>1</td>
+            </tr>
+         </table>
+      </article>
+   </section>
+   <script>
+      let height = $(window).innerHeight();
+      $("section").css("height", height);
+   </script>
+</body>
+</html>
