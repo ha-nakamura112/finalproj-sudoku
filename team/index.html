@@ -428,14 +428,14 @@
       resultBoxs.forEach(function(val,idx){
          let p = val[0];
          let q = val[1];
-      if( -1 < p && p < 3){
+         if( -1 < p && p < 3){
             i = Math.floor(q / 3) + 0;
          }else if(2 < p && p < 6){
             i = Math.floor(q / 3) + 3;
          }else{
             i = Math.floor(q / 3) + 6;
          }
-
+         
          if( -1 < q && q < 3){
             switch( p % 3){
                case 0:
@@ -478,9 +478,9 @@
 	}
 
       
-    function validateRows(board){
-    let size = board.size;
-    let val = board.values;
+   function validateRows(board){
+   let size = board.size;
+   let val = board.values;
 	// Rows
 	for (let q = 0; q < size; q++){
 		for (let i = 0; i < size; i++){
@@ -493,7 +493,7 @@
         }
 	}
     return resultRows;
-    }
+   }
 
    // Angel's part 
         let test1 = function(){
