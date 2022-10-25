@@ -5,6 +5,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
    <style>
       @import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
 
@@ -15,20 +16,18 @@
       }
       
       section {
-         padding: 0 25%;
          display: flex;
-         flex-direction: column;
-         flex-wrap: wrap;
          justify-content: center;
-         align-items: center;
-         row-gap: 2vh;
+         align-items: flex-start;
+         column-gap: 3vh;
+         height: fit-content;
+         padding-top: 5vh;
       }
       
       article {
          width: 100%;
          display: flex;
          justify-content: center;
-         column-gap: 2vh;
       }
 
       /* Style for Title */
@@ -44,7 +43,7 @@
          width: 100%;
          display: flex;
          justify-content: center;
-         column-gap: 2vh;
+         column-gap: 3vh;
       }
 
       button {
@@ -53,6 +52,7 @@
          background-color: #aaf;
          font-size: 12pt;
          color: whitesmoke;
+         box-shadow: 0 3px 5px rgba(0,0,0,.2);
       }
 
       button:active {
@@ -66,202 +66,485 @@
 
       /* Default style for the table */
       table {
-         width: 250px;
-         height: 250px;
+         width: 430px;
+         height: 430px;
          border-collapse: collapse;
       }
       
       tr,td {
          border: 2px solid #ddf;
          color: #88e;
-         font-size: 22pt;
          text-align: center;
       }
 
+      td {
+         font-size: 22pt;
+      }
+
+      i {
+         font-size: 28px;
+         /* animation: move 3s ease infinite; */
+      }
+      @keyframes move {
+      0%{
+         transform: translateX(-200%);
+         }
+      50% {
+         transform: translateX(200%);
+      }
+      100% {
+         transform: translateX(-200%);
+      }
+
+      }
       .selected {
          border: 3px solid #aaf;
          background-color: #eef;
       }
 
       /* Class for the cell that has an error */
+      .exp {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         column-gap: 1vh;
+      }
       .error {
-         border: 5px dashed #f88;
-         background-color: #fdd;
+         height: 7vh;
+         width: 7vh;
+         font-size: 14px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         text-align: center;
+         color: grey;
+         text-transform: lowercase;
+      }
+      .error1 {
+         border: 5px dashed #7FBCD2;
+         background-color: #A5F1E9;
          color: #f66;
       }
+      .error2 {
+         border: 5px dashed #FECD70;
+         background-color: #FFD8A9;
+         color: #f66;
+      }
+
+      .error3 {
+         border: 5px dashed #EB1D36;
+         background-color: #EC7272;
+         color: white;
+      }
+
+      /* result */
+      .result {
+         display: flex;
+         flex-direction: column;
+         align-items: flex-start;
+         justify-content: flex-start;
+         row-gap: 2vh;
+      }
+
+      .res-box{
+         border: 2px dotted #88e;
+         height: 25vh;
+         width: 45vh;
+         display: flex;
+         flex-direction: column;
+
+         align-items: center;
+         justify-content: center;
+         row-gap: 2vh;
+      }
+
+      .result h2{
+         text-align: center;
+         text-transform: capitalize;
+         word-spacing: 1.3;
+         color: #88e;
+         font-weight: 600;
+         font-size: 24px;
+      }
+      .result h3{
+         text-align: center;
+         text-transform: capitalize;
+         word-spacing: 1.3;
+         color: #f66;
+         font-weight: 500;
+         font-size: 20px;
+      }
+
+      .container {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         row-gap: 2vh;
+         padding:3% 7%;
+      }
+
+      .hide {
+         display: none;
+         border: 2px dotted #88e;
+         height: 18vh;
+         width: 40vh;
+         flex-direction: column;
+
+         align-items: center;
+         justify-content: center;
+         row-gap: 2vh;
+      }
+
+      .newerror {
+         background-color: #EB1D36;
+      }
+
+
+      @keyframes poyooon {
+  0%   { transform: scale(1.0, 1.0) translate(0%, 0%); }
+  10%  { transform: scale(1.1, 0.9) translate(0%, 5%); }
+  40%  { transform: scale(1.2, 0.8) translate(0%, 15%); }
+  50%  { transform: scale(1.0, 1.0) translate(0%, 0%); }
+  60%  { transform: scale(0.9, 1.2) translate(0%, -100%); }
+  75%  { transform: scale(0.9, 1.2) translate(0%, -20%); }
+  85%  { transform: scale(1.2, 0.8) translate(0%, 15%); }
+  100% { transform: scale(1.0, 1.0) translate(0%, 0%); }
+}
+
+@keyframes korokoro {
+  0%   { transform: translate(0%, 0%); }
+  5%   { transform: translate(10%, 0%) rotate(10deg); }
+  25%  { transform: translate(20%, 0%) rotate(20deg); }
+  30%  { transform: translate(-10%, 0%) rotate(-10deg); }
+  35%  { transform: translate(-15%, 0%) rotate(-15deg); }
+  45%  { transform: translate(10%, 0%) rotate(10deg); }
+  50%  { transform: translate(15%, 0%) rotate(15deg); }
+  60%  { transform: translate(-5%, 0%) rotate(-5deg); }
+  65%  { transform: translate(-7%, 0%) rotate(-7deg); }
+  75%  { transform: translate(0%, 0%) rotate(0deg); }
+  100% { transform: translate(0%, 0%) rotate(0deg); }
+}
    </style>
    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 <body>
-   <section>
+   <div class="container">
       <h1>AUTOMATIC SUDOKU</h1>
+      <i class="fa-brands fa-android"></i>
       <aside>
          <button type="button">CHECK</button>
-         <button type="button" disabled>RESET</button>
+         <button type="button" disabled>TRY AGAIN</button>
       </aside>
-      <article>
-         <table>
-            <tr>
-               <td>1</td>
-               <td>8</td>
-               <td>7</td>
-            </tr>
-            <tr>
-               <td>4</td>
-               <td>9</td>
-               <td>3</td>
-            </tr>
-            <tr>
-               <td>6</td>
-               <td>5</td>
-               <td>2</td>
-            </tr>
-         </table>
-         <table>
-            <tr>
-               <td>6</td>
-               <td>4</td>
-               <td>3</td>
-            </tr>
-            <tr>
-               <td>1</td>
-               <td>2</td>
-               <td>5</td>
-            </tr>
-            <tr>
-               <td>8</td>
-               <td>9</td>
-               <td>7</td>
-            </tr>
-         </table>
-         <table>
-            <tr>
-               <td>2</td>
-               <td>5</td>
-               <td>9</td>
-            </tr>
-            <tr>
-               <td>7</td>
-               <td>8</td>
-               <td>6</td>
-            </tr>
-            <tr>
-               <td>3</td>
-               <td>1</td>
-               <td>4</td>
-            </tr>
-         </table>
-      </article>
-      <article>
-         <table>
-            <tr>
-               <td>7</td>
-               <td>1</td>
-               <td>4</td>
-            </tr>
-            <tr>
-               <td>2</td>
-               <td>3</td>
-               <td>8</td>
-            </tr>
-            <tr>
-               <td>5</td>
-               <td>6</td>
-               <td>9</td>
-            </tr>
-         </table>
-         <table>
-            <tr>
-               <td>9</td>
-               <td>6</td>
-               <td>8</td>
-            </tr>
-            <tr>
-               <td>5</td>
-               <td>7</td>
-               <td>1</td>
-            </tr>
-            <tr>
-               <td>4</td>
-               <td>2</td>
-               <td>3</td>
-            </tr>
-         </table>
-         <table>
-            <tr>
-               <td>5</td>
-               <td>3</td>
-               <td>2</td>
-            </tr>
-            <tr>
-               <td>6</td>
-               <td>4</td>
-               <td>9</td>
-            </tr>
-            <tr>
-               <td>1</td>
-               <td>7</td>
-               <td>8</td>
-            </tr>
-         </table>
-      </article>
-      <article>
-         <table>
-            <tr>
-               <td>8</td>
-               <td>7</td>
-               <td>6</td>
-            </tr>
-            <tr>
-               <td>9</td>
-               <td>1</td>
-               <td>4</td>
-            </tr>
-            <tr>
-               <td>2</td>
-               <td>3</td>
-               <td>5</td>
-            </tr>
-         </table>
-         <table>
-            <tr>
-               <td>4</td>
-               <td>9</td>
-               <td>1</td>
-            </tr>
-            <tr>
-               <td>3</td>
-               <td>5</td>
-               <td>2</td>
-            </tr>
-            <tr>
-               <td>7</td>
-               <td>8</td>
-               <td>6</td>
-            </tr>
-         </table>
-         <table>
-            <tr>
-               <td>3</td>
-               <td>2</td>
-               <td>5</td>
-            </tr>
-            <tr>
-               <td>8</td>
-               <td>6</td>
-               <td>7</td>
-            </tr>
-            <tr>
-               <td>9</td>
-               <td>4</td>
-               <td>1</td>
-            </tr>
-         </table>
-      </article>
-   </section>
+      <section>
+         <article>
+            <table>
+   
+            </table>
+         </article>
+         <div class="result">
+            <h5>number of errors</h5>
+            <div class="exp">
+               
+               <div class="error error1">
+                  1 
+               </div>
+               <div class="error error2">
+                  2 
+               </div>
+               <div class="error error3">
+                  more
+               </div>
+            </div>
+            <div class="res-box">
+               <h2></h2>
+            </div>
+            <div class="res-box hide">
+               <h3></h3>
+            </div>
+         </div>
+      </section>
+   </div>
    <script>
-      let height = $(window).innerHeight();
-      $("section").css("height", height);
+   let size, values;
+   let button = document.querySelector('button');
+   let resultRows = [];
+   let columnArry = [];
+   let resultBoxs = [];
+   let h2 = $('h2');
+   let h3 = $('h3');
+
+
+      let tablePop = (values) => {
+        const table = document.querySelector("table");
+        for(let rowidx in values){
+            let tr = document.createElement("tr");
+            for(let colIdx in values[rowidx]){
+                let td = document.createElement("td");
+                td.innerHTML = values[rowidx][colIdx];
+                (td.innerHTML == '') ? td.classList.add('blank'):null;
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+        }
+      }
+    
+    
+    button.addEventListener('click',function(){
+      let tr = document.querySelectorAll('tr');
+      let td = $('tr').children();
+
+      for( let i = 0; i < $('tr').children().text().length; i++){
+         if( $('.blank').length != 0){
+            $('.hide').css('display', 'flex');
+            if($('.blank').length == 1){
+               h3.text(`You have 1 empty box`);
+            }else{
+               h3.text(`You have \n ${$('.blank').length} empty boxes`);
+            }
+         }else{
+            $('.hide').css('display', 'none');
+         }
+      }
+        let test = test1();
+        let len = ( test.length + resultRows.length + resultBoxs.length) ;
+        if( len == 0){
+         if($('.blank').length == 0){
+            h2.text('Congratulations!\n There is no error!');
+            $('i').css('animation','poyooon 0.9s linear 0s infinite');
+         }else{
+            h2.text('There is no error!');
+         }
+        }else{
+         h2.text(`${len} mistakes! \n Let's try again!`);
+         $('i').css('animation','korokoro 2.5s linear 0s 3');
+        }
+
+        for(let i = 0; i < td.length ; i++){
+            if($(td[i]).hasClass('mark')){
+               $(td[i]).removeClass('mark');
+               $(td[i]).addClass('error1');
+            }
+         }
+
+        for( let y =0; y< test.length; y++){
+            let res = test[y];
+            if($(tr[res[0]].children[res[1]]).hasClass('error1')){
+               tr[res[0]].children[res[1]].classList.remove('error1');
+               tr[res[0]].children[res[1]].classList.add('error2');
+            }else{
+               tr[res[0]].children[res[1]].classList.add('error1');
+            }
+        }   
+        for( let y =0; y< resultRows.length; y++){
+            let res = resultRows[y];
+            if($(tr[res[0]].children[res[1]]).hasClass('error1')){
+               tr[res[0]].children[res[1]].classList.add('error2');
+            }else if($(tr[res[0]].children[res[1]]).hasClass('error2')){
+               tr[res[0]].children[res[1]].classList.remove('error2');
+               tr[res[0]].children[res[1]].classList.add('error3');
+            }else{
+               tr[res[0]].children[res[1]].classList.add('error1');
+            }
+        }
+         $($("button")[1]).attr("disabled",false);
+    })
+
+    function loadJson(){
+        const xmlHTTP = new XMLHttpRequest();
+        xmlHTTP.onload = function(){
+            output = JSON.parse(this.responseText)[0];
+            size = output.size;
+            values = output.values;
+            validateRows(output);
+            chgCss(size);
+
+            tablePop(values);
+            validateBoxs();
+            $($('button')[1]).click(function(){
+               $('.hide').css('display', 'none');
+               $('table').text('');
+               h2.text('');
+               h3.text('');
+               resultRows = [];
+               columnArry = [];
+               resultBoxs = [];
+               validateRows(output);
+               tablePop(values);
+               $(this).attr('disabled',true);
+            })
+
+        }
+        xmlHTTP.open("GET","./source.json",true);
+        xmlHTTP.send();
+    }
+    loadJson();
+
+    function chgCss(size){
+       if(size == 9){
+          let height = $(window).innerHeight() * 0.8;
+          $("section").css("height", height);
+         }else if(size == 16){
+          console.log(size);
+         let height = $(window).innerHeight();
+         $("section").css("height", height);
+         $("table").css("height", '500px');
+         $("table").css("width", '500px');
+         $("td").css("font-size", '10px');
+         $("tr").css("font-size", '10px');
+    
+       }
+    }
+
+    function validateBoxs(){
+      // to store temporary tds
+      let td = $('tr').children();
+      let temps = [];
+      let temp = [];
+      let tdArray = [];
+      let tdArrays = [];
+      for(let k = 0; k < td.length; k++){
+         if( ( k % Math.sqrt(td.length)) == 0 && k != 0){
+            tdArrays.push(tdArray);
+            tdArray = [];
+            tdArray.push(td[k]);
+         }else{
+            tdArray.push(td[k]);
+         }
+      }
+      tdArrays.push(tdArray);
+      console.log(tdArrays);
+      
+      let sq = Math.sqrt(size);
+         for(let p = 0; p < size; p += sq){
+           for (let y = 0; y < size ; y += sq){
+            //getting the first place of each sectioin 1,4,6,7,2,5,8,9,2 
+               for(let i = 0 ; i < sq; i++){
+                  for(let j = 0; j < sq; j++){
+                     //based on each number add 0-2 to check every numbers in one section
+                     let ni = p + i;
+                     let nj = y + j;
+                     temp.push(tdArrays[ni][nj]);
+                  }
+               }
+               temps.push(temp);
+               temp = [];
+            }
+         }
+         console.log(temps);
+
+      // let lens = temps.length;
+      for(let i = 0; i < temps.length; i++){
+            for(let j=0;j < temps.length; j++){
+                 for(let k = j + 1; k < temps.length; k++){
+                  if($(temps[i][j]).text() == $(temps[i][k]).text()){
+                     resultBoxs.push([i,j]);
+                     resultBoxs.push([i,k]);
+                     $(temps[i][j]).addClass('mark');     
+                     $(temps[i][k]).addClass('mark');     
+                  }
+               }
+            }
+         }
+	}
+
+      
+   function validateRows(board){
+   let size = board.size;
+   let val = board.values;
+	// Rows
+	for (let q = 0; q < size; q++){
+		for (let i = 0; i < size; i++){
+            for (let j = i+1; j < size; j++){
+                if(val[q][i] == val[q][j]){
+                    resultRows.push([q,i]);
+                    resultRows.push([q,j]);
+                }
+            }
+        }
+	}
+    return resultRows;
+   }
+
+   // Angel's part 
+        let test1 = function(){
+            for(let i=0;i<size;i++){
+                // for iterate through every column 
+                for(let j=0;j<size;j++){
+                    for(let k=j+1;k<size;k++){
+                        // to compare if theres any duplicate in the columns 
+                        if(values[j][i] == values[k][i]){
+                            columnArry.push([j,i]);
+                            columnArry.push([k,i]);
+                            
+                        }
+                    }
+                }
+            }
+            
+            return columnArry;
+        }
+        
+        setTimeout( function() { 
+                test1();
+                // because the function was retutning the same result twice, the array is divided in half   
+                let cArryLength = columnArry / 2;
+                columnArry.splice(cArryLength);
+
+            }, 100);
+        
+    // end of angel's part 
    </script>
 </body>
 </html>
+
+
+   <!-- [
+       {
+           "size":9,
+           "values":[
+           [1, 8, 7, 4, 9, 3, 6, 5, 2],
+           [6, 4, 3, 1, 2, 5, 8, 9, 7],
+           [2, 5, 9, 7, 8, 6, 3, 1, 4],
+   
+           [7, 1, 4, 2, 3, 8, 5, 6, 9],
+           [9, 6, 8, 9, 7, 1, 4, 2, 3],
+           [5, 3, 2, 6, 4, "", 1, 7, 8],
+   
+           [8, 7, 6, 9, 1, 4, 2, 3, 5],
+           [4, 9, 1, 3, 5, 2, 7, 8, 6],
+           [3, 2, 5, 8, 6, 7, 9, 4, 1]
+   
+   
+           ]
+       }
+   ] -->
+
+   <!-- [
+       {
+           "size":16,
+           "values":[
+           [1, 8, 7, 4, 9, 3, 6, 5, 2, 10, 11, 12, 13, 14, 15, 16],
+           [6, 4, 3, 1, 2, 5, 8, 9, 7, 10, 11, 12, 13, 14, 15, 16],
+           [2, 5, 9, 7, 8, 6, 3, 1, 4, 10, 11, 12, 13, 14, 15, 16],
+           [7, 1, 4, 2, 3, 8, 5, 6, 9, 10,11,12,13,14,15,16],
+   
+           [9, 6, 8, 9, 7, 1, 4, 2, 3, 10,11,12,13,14,15,16],
+           [5, 3, 2, 6, 4, "", 1, 7, 8, 10,11,12,13,14,15,16],
+           [7, 1, 4, 2, 3, 8, 5, 6, 9, 10,11,12,13,14,15,16],
+           [9, 6, 8, 9, 7, 1, 4, 2, 3, 10,11,12,13,14,15,16],
+           
+           [9, 6, 8, 9, 7, 1, 4, 2, 3, 10,11,12,13,14,15,16],
+           [5, 3, 2, 6, 4, "", 1, 7, 8, 10,11,12,13,14,15,16],
+           [7, 1, 4, 2, 3, 8, 5, 6, 9, 10,11,12,13,14,15,16],
+           [9, 6, 8, 9, 7, 1, 4, 2, 3, 10,11,12,13,14,15,16],
+   
+           [5, 3, 2, 6, 4, "", 1, 7, 8, 10,11,12,13,14,15,16],
+           [8, 7, 6, 9, 1, 4, 2, 3, 5, 10,11,12,13,14,15,16],
+           [4, 9, 1, 3, 5, 2, 7, 8, 6, 10,11,12,13,14,15,16],
+           [3, 2, 5, 8, 6, 7, 9, 4, 1, 10,11,12,13,14,15,16]
+   
+   
+           ]
+       }
+   ] -->
