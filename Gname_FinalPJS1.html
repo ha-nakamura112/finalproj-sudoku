@@ -46,19 +46,35 @@
     }
     loadJson();
 
-let rowArray = []
-let rows = function(){
-    for(let i=0;i<size;i++){
-        for(let j=0;j<size;j++){
-            if(values[i][j] == values[i][k]){
-                let tmp = testArr[i];
-                testArr[i] = testArr[j];
-                testArr[j] = tmp;
+// let rowArray = []
+// let rows = function(){
+//     for(let i=0;i<size;i++){
+//         for(let j=0;j<size;j++){
+//             if(values[i][j] == values[i][k]){
+//                 let tmp = testArr[i];
+//                 testArr[i] = testArr[j];
+//                 testArr[j] = tmp;
+//             }
+//         }
+//     }
+// }
+// console.log()
+
+function validateRows(board){
+    let size = board.size;
+    let val = board.values;
+    for (let q=0; q<size;q++){
+        for(let i=0;i<size;i++){
+            for(let j=i+1;j<size;j++){
+                if(val[q][i] == val[g][j]){  
+                    resultRows.push([q,i]);
+                    resultRows.push([q,j]);
+                }
             }
         }
     }
+    return resultRows;
 }
-console.log()
 
 </script>
 </html>
